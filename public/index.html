@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skysense AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .forecast-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 0 auto;
+      padding: 10px 0;
+      border-radius: 15px;
+      overflow-x: auto;
+      white-space: nowrap;
+}
+/* ✅ Seamless background gradient for the 7-day forecast row */
+.forecast-container {
+  background: linear-gradient(
+    to right,
+    rgba(46, 134, 222, 0.35),
+    rgba(52, 152, 219, 0.35),
+    rgba(88, 86, 214, 0.35)
+  );
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+}
+
+    .glass {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .weather-details {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .weather-details.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Layout Structure */
+    .main-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-grow: 1;
+      min-height: 0;
+      height: 100%;
+      gap: 20px;
+    }
+    .panel-container {
+      flex: 0 0 45%;
+      max-width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .map-container {
+      flex: 0 0 53%;
+      max-width: 53%;
+      height: 100%;
+    }
+    #weather-map {
+      height: 100%;
+      min-height: 300px;
+    }
+    #weather-map-container {
+      height: 100%;
+      min-height: 300px;
+    }
+
+    /* Forecast */
+    .forecast-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 0 auto;
+      padding: 10px 0;
+      border-radius: 15px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .forecast-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 5px;
+      padding: 10px;
+      border-radius: 15px;
+      text-align: center;
+      min-width: calc((100% / 7) - 10px);
+      flex: 1 0 auto;
+    }
+    /* ✅ Smooth internal card gradient — removes visible seams */
+/* ✅ Seamless card gradient (no cuts) */
+.forecast-card.glass {
+  background: linear-gradient(
+    to right,
+    rgba(46, 134, 222, 0.35),
+    rgba(52, 152, 219, 0.35),
+    rgba(88, 86, 214, 0.35)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .panel-container, .map-container {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      #weather-map-container {
+        margin-top: 10px;
+      }
+      #weather-map {
+        min-height: 250px;
+      }
+    }
+  /* ✅ Astronomy Section Grid */
+.astronomy-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.astro-card {
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.astro-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.astro-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.astro-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.astro-center {
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.9;
+}
+
+.astro-phase {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.astro-next-full {
+  opacity: 0.8;
+  margin-top: 5px;
+}
+.moon-icon {
+  width: 250px;        /* fixed width */
+  height: 250px;       /* fixed height */
+  object-fit: contain; /* prevents distortion */
+  display: block;
+  margin: 10px auto 0 auto;
+}
+/* ✅ Locks moon icon in a fixed area so the card never grows */
+.moon-icon-wrapper {
+  width: 250px;     /* icon area width */
+  height: 250px;    /* icon area height */
+  margin: 0 auto;   /* center horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ Icon scales WITHOUT stretching the card */
+.moon-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* Humidity bars */
+.humidity-bars {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.humidity-bars div {
+  width: 10px;
+  height: calc(var(--h)*1px);
+  background: linear-gradient(to top, #4a90e2, #b0d4ff);
+  border-radius: 6px;
+  opacity: 0.8;
+}
+/* Reduce moon phase card vertical spacing */
+#moon-phase-card h3 {
+  margin-bottom: 6px;
+}
+
+#moon-phase-card .moon-icon-wrapper {
+  height: 90px !important;
+  margin: 0 auto 4px auto;
+}
+
+#moon-phase-card .astro-phase {
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+#moon-phase-card .astro-next-full {
+  margin-top: 2px;
+}
+/* UV/AQI arc canvas is already styled */
+
+  </style>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-900 via-blue-800 to-cyan-700 text-white">
+  
+  <!-- Header -->
+  <div class="header-container w-full max-w-2xl mx-auto space-y-2 mt-4">
+    <div class="text-center animate-fade-in">
+      <h1 class="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-400">
+        Skysense AI
+      </h1>
+      <p class="mt-1 text-blue-200">Weather insights & smart chat in one place</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-container mt-14">
+    <div class="main-container">
+
+      <!-- LEFT: Weather Panel -->
+      <div class="panel-container">
+        <div id="response" class="glass rounded-2xl p-6 text-lg leading-relaxed transition-all duration-300">
+          <p class="text-blue-200 italic">Loading weather data...</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Weather Map -->
+      <div class="map-container">
+        <div id="weather-map-container" class="relative w-full rounded-2xl overflow-hidden shadow-xl">
+          <div id="weather-map"></div>
+
+          <button id="fullscreen-btn" class="absolute top-4 right-4 z-[9999] bg-black/80 text-white px-4 py-2 rounded-xl">
+            ⛶ Expand
+          </button>
+
+          <button id="recenter-btn" class="absolute bottom-4 right-4 z-[9999] bg-black/80 text-white w-12 h-12 rounded-full flex items-center justify-center">
+            📍
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 7-Day Forecast -->
+    <div class="forecast-container">
+      <div id="forecast-scroll" class="forecast-scroll"></div>
+    </div>
+
+    <!-- Temperature Graph -->
+    <div class="glass rounded-2xl p-4 mt-4 w-full max-w-4xl mx-auto">
+      <h2 class="text-xl font-semibold mb-2">Today's Temperature</h2>
+      <canvas id="tempChart" height="200"></canvas>
+    </div>
+
+  </div>
+<!-- ✅ Astronomy / Sun & Moon Section -->
+<div id="astronomy-cards" class="astronomy-grid mt-6">
+
+  <!-- Visibility -->
+  <div class="glass astro-card">
+    <h3>Visibility</h3>
+    <div class="astro-value" id="vis-km"></div>
+    <p id="vis-desc"></p>
+  </div>
+
+  <!-- Pressure -->
+  <div class="glass astro-card">
+    <h3>Pressure</h3>
+    <div class="astro-value">
+      <span id="pressure-val"></span> mb
+    </div>
+    <p id="pressure-desc"></p>
+  </div>
+
+  <!-- Sun -->
+  <div class="glass astro-card">
+    <h3>Sun</h3>
+    <canvas id="sunArc" width="250" height="120"></canvas>
+    <div class="astro-row">
+      <span id="sunrise-time"></span>
+      <span id="sunset-time"></span>
+    </div>
+    <p id="sun-duration" class="astro-center"></p>
+  </div>
+
+  <!-- Moon -->
+  <div class="glass astro-card">
+    <h3>Moon</h3>
+    <canvas id="moonArc" width="250" height="120"></canvas>
+    <div class="astro-row">
+      <span id="moonrise-time"></span>
+      <span id="moonset-time"></span>
+    </div>
+    <p id="moon-duration" class="astro-center"></p>
+  </div>
+ <!-- Moon Phase -->
+<div class="glass astro-card" id="moon-phase-card">
+  <h3>Moon phase</h3>
+
+  <div class="moon-icon-wrapper">
+    <img id="moon-phase-icon" class="moon-icon" src="" />
+  </div>
+
+  <p class="astro-phase" id="moon-phase-text"></p>
+
+  <p class="astro-next-full">
+    Next full moon: <span id="moon-next-full"></span>
+  </p>
+</div>
+<!-- ✅ END OF MOON PHASE CARD -->
+
+
+<!-- ✅ Humidity -->
+<div class="glass astro-card" id="humidity-card">
+  <h3>Humidity</h3>
+
+  <div class="humidity-bars">
+    <div style="--h:10"></div>
+    <div style="--h:20"></div>
+    <div style="--h:40"></div>
+    <div style="--h:60"></div>
+    <div style="--h:80"></div>
+    <div style="--h:100"></div>
+  </div>
+
+  <div class="astro-value" id="humidity-val">--%</div>
+  <p id="dew-val"></p>
+  <p id="humidity-desc"></p>
+</div>
+
+
+<!-- ✅ UV -->
+<div class="glass astro-card" id="uv-card">
+  <h3>UV</h3>
+  <canvas id="uvArc" width="250" height="120"></canvas>
+  <div class="astro-value" id="uv-val"></div>
+  <p id="uv-desc"></p>
+</div>
+
+
+<!-- ✅ AQI -->
+<div class="glass astro-card" id="aqi-card">
+  <h3>AQI</h3>
+  <canvas id="aqiArc" width="250" height="120"></canvas>
+  <div class="astro-value" id="aqi-val"></div>
+  <p id="aqi-desc"></p>
+</div>
+
+</div>
+
+
+</div>
+
+  <footer class="mt-4 text-sm text-blue-300 opacity-70 text-center">
+    © 2025 Skysense AI
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1Ir5BmoNXiP6V7jLIDZr8";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "skysense-ai",
+  "version": "1.0.0",
+  "description": "Skysense AI — Weather + AI Chat system",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "weather",
+    "ai",
+    "groq",
+    "express",
+    "skysense"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2"
+  }
+}
