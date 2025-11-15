@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkysenseAI Map Features</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .header a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #93c5fd;
+      font-weight: 500;
+    }
+
+    /* Article Card */
+    .article-card {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.35);
+      margin-bottom: 25px;
+    }
+
+    .article-card h1 {
+      margin-top: 0;
+      font-size: 32px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .article-card p {
+      line-height: 1.75;
+      font-size: 17px;
+      color: #f1f5f9;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-top: 25px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* Comments Box */
+    .comment-box {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 25px;
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.35);
+      margin-bottom: 30px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="articles.html">Articles</a>
+    </div>
+  </div>
+
+  <!-- ARTICLE CONTENT -->
+  <div class="article-card">
+    <h1>SkysenseAI Map Features</h1>
+    <div class="meta">Published: Today • Author: SkysenseAI Team</div>
+
+    <p>
+      SkysenseAI includes an advanced mapping system built on top of <strong>OpenStreetMap (OSM)</strong>, offering clean, high-detail maps that support aviation users, telescope owners, researchers, and anyone who needs location-based insights.
+      The map system is designed to be lightweight, fast, and accurate, focusing on practical features instead of overwhelming tools.
+    </p>
+
+    <h2>🌍 Key Map Features</h2>
+
+    <p><strong>1. Global Coverage</strong><br>
+      SkysenseAI uses OSM to provide full worldwide map tiles with cities, airports, roads, terrain, and observation zones. This makes it useful for both aviation planning and astronomy location scouting.
+    </p>
+
+    <p><strong>2. Airport & Landmark Visibility</strong><br>
+      Pilots and drone operators can quickly locate nearby airfields, heliports, and important landmarks. This is extremely helpful for preflight checks and situational awareness.
+    </p>
+
+    <p><strong>3. Weather Integration</strong><br>
+      The map can be combined with SkysenseAI’s weather features to help users visualize conditions by location. For example, users can check wind speeds or cloud cover over a specific area.
+    </p>
+
+    <p><strong>4. Dark-Sky Location Support</strong><br>
+      Telescope users can find potential dark-sky locations, elevation spots, and open areas suitable for observation sessions.
+    </p>
+
+    <p><strong>5. Fast & Lightweight Rendering</strong><br>
+      The map is optimized to load quickly even on mobile devices, with clean visuals and smooth zooming.
+    </p>
+
+    <h2>🔮 Future in Maps</h2>
+
+    <p>
+      The map system will be expanded with **layer overlays** to provide deeper situational awareness. These overlays will include:
+    </p>
+
+    <p>• <strong>Precipitation maps</strong> (rain, storms, intensity)</p>
+    <p>• <strong>Air quality maps</strong> (AQI, pollutants, smoke, CO₂)</p>
+    <p>• <strong>Temperature overlays</strong> (heatmaps and cold spots)</p>
+    <p>• <strong>Wind flow visualization</strong> (direction and speed)</p>
+    <p>• <strong>Cloud and visibility overlays</strong></p>
+
+    <p>
+      These features will make SkysenseAI even more useful for pilots, drone operators, field researchers, and anyone who needs quick environmental analysis.
+    </p>
+
+    <p>
+      The long-term goal is to turn SkysenseAI’s maps into a powerful, interactive dashboard that blends weather, location, and AI reasoning into one intelligent system.
+    </p>
+
+  </div>
+
+  <!-- COMMENTS SECTION -->
+  <div class="comment-box">
+    <h2>Comments</h2>
+
+    <script src="https://utteranc.es/client.js"
+            repo="eamhad/skysense-comments"
+            issue-term="title"
+            theme="github-dark"
+            crossorigin="anonymous"
+            async>
+    </script>
+  </div>
+
+</div>
+
+</body>
+</html>
