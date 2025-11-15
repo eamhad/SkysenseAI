@@ -412,6 +412,35 @@
   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1Ir5BmoNXiP6V7jLIDZr8";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+  <!-- index.html (with JS) -->
+<nav aria-label="site links">
+  <a href="about.html" target="_blank" rel="noopener noreferrer">About</a> ·
+  <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> ·
+  <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a> ·
+  <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us</a>
+</nav>
+
+<script>
+  document.querySelectorAll('.link-like').forEach(el => {
+    el.addEventListener('click', () => {
+      const url = el.dataset.url;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+    // support keyboard activation (Enter / Space)
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+</script>
+
+<style>
+  .link-like { cursor: pointer; text-decoration: underline; color: inherit; }
+  .link-like:focus { outline: 2px solid #4a90e2; outline-offset: 2px; }
+</style>
 </body>
 </html>
+
 
