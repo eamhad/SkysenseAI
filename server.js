@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
   });
 });
 // ✅ Chatbase identity token route
-app.get("/api/chatbase/token", async (req, res) => {
+app.post("/api/chatbase/token", async (req, res) => {
   try {
     // ❗ You must replace this with your actual user auth logic
     // Example placeholder user — replace with real database / session user
@@ -76,4 +76,5 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Skysense AI → http://localhost:${PORT}`);
+
 });
