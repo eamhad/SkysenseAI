@@ -244,6 +244,16 @@
   margin-top: 2px;
 }
 /* UV/AQI arc canvas is already styled */
+/* Basic mode background (matches SkysenseAI gradient) */
+#toggleBG {
+  background: linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4));
+  backdrop-filter: blur(10px);
+}
+
+/* Professional mode darker gradient */
+.professional-mode {
+  background: linear-gradient(to bottom right, #0a1124, #0d1b3d, #0d284d) !important;
+}
 
   </style>
 
@@ -297,6 +307,26 @@
 
       <!-- RIGHT: Weather Map -->
       <div class="map-container">
+        <!-- Mode Switch -->
+<div class="absolute top-4 right-20 z-[9999]">
+  <div class="relative inline-block w-20 select-none" id="modeToggle">
+    <input type="checkbox" id="toggleSwitch" class="hidden" />
+
+    <label for="toggleSwitch" 
+           class="block h-10 rounded-full cursor-pointer backdrop-blur-xl bg-white/20 border border-white/30 transition-all" 
+           id="toggleBG">
+      <span id="toggleText" 
+            class="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm">
+        Basic
+      </span>
+    </label>
+
+    <div id="toggleCircle"
+         class="absolute left-1 top-1 bg-white w-8 h-8 rounded-full shadow-md transform transition-all">
+    </div>
+  </div>
+</div>
+
         <div id="weather-map-container" class="relative w-full rounded-2xl overflow-hidden shadow-xl">
           <div id="weather-map"></div>
 
@@ -447,13 +477,45 @@
     });
   });
 </script>
+<script>
+  const toggleSwitch = document.getElementById("toggleSwitch");
+  const toggleBG = document.getElementById("toggleBG");
+  const toggleCircle = document.getElementById("toggleCircle");
+  const toggleText = document.getElementById("toggleText");
 
+  toggleSwitch.addEventListener("change", () => {
+    if (toggleSwitch.checked) {
+      // Professional Mode ON
+      toggleCircle.style.transform = "translateX(40px)";
+      toggleText.textContent = "Pro";
+      toggleBG.style.background = 
+        "linear-gradient(to right, rgba(17,24,39,0.7), rgba(15,23,42,0.8))";
+
+      // Apply darker gradient to the whole body
+      document.body.classList.add("professional-mode");
+
+      console.log("Professional Mode Enabled");
+    } else {
+      // Basic Mode
+      toggleCircle.style.transform = "translateX(0px)";
+      toggleText.textContent = "Basic";
+      toggleBG.style.background =
+        "linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4))";
+
+      // Remove darker gradient
+      document.body.classList.remove("professional-mode");
+
+      console.log("Basic Mode Enabled");
+    }
+  });
+</script>
 <style>
   .link-like { cursor: pointer; text-decoration: underline; color: inherit; }
   .link-like:focus { outline: 2px solid #4a90e2; outline-offset: 2px; }
 </style>
 </body>
 </html>
+
 
 
 
