@@ -244,13 +244,12 @@
   margin-top: 2px;
 }
 /* UV/AQI arc canvas is already styled */
-/* Basic mode background (matches SkysenseAI gradient) */
+/* Default (Pro Off) */
 #toggleBG {
   background: linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4));
-  backdrop-filter: blur(10px);
 }
 
-/* Professional mode darker gradient */
+/* Pro Mode Background (Dark Theme) */
 .professional-mode {
   background: linear-gradient(to bottom right, #0a1124, #0d1b3d, #0d284d) !important;
 }
@@ -307,25 +306,30 @@
 
       <!-- RIGHT: Weather Map -->
       <div class="map-container">
-        <!-- Mode Switch -->
-<div class="absolute top-4 right-20 z-[9999]">
+      <!-- Pro Mode Toggle -->
+<div class="absolute top-4 right-20 z-[9999] flex flex-col items-center">
+  
+  <!-- Slider -->
   <div class="relative inline-block w-20 select-none" id="modeToggle">
     <input type="checkbox" id="toggleSwitch" class="hidden" />
 
-    <label for="toggleSwitch" 
-           class="block h-10 rounded-full cursor-pointer backdrop-blur-xl bg-white/20 border border-white/30 transition-all" 
+    <label for="toggleSwitch"
+           class="block h-10 rounded-full cursor-pointer backdrop-blur-xl bg-white/20 border border-white/30 transition-all"
            id="toggleBG">
-      <span id="toggleText" 
-            class="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm">
-        Basic
-      </span>
     </label>
 
     <div id="toggleCircle"
          class="absolute left-1 top-1 bg-white w-8 h-8 rounded-full shadow-md transform transition-all">
     </div>
   </div>
+
+  <!-- Text Under Slider -->
+  <p class="text-white text-sm font-semibold mt-2 opacity-80" id="modeLabel">
+    Professional Mode Off
+  </p>
+
 </div>
+
 
         <div id="weather-map-container" class="relative w-full rounded-2xl overflow-hidden shadow-xl">
           <div id="weather-map"></div>
@@ -481,51 +485,45 @@
   const toggleSwitch = document.getElementById("toggleSwitch");
   const toggleBG = document.getElementById("toggleBG");
   const toggleCircle = document.getElementById("toggleCircle");
-  const toggleText = document.getElementById("toggleText");
+  const modeLabel = document.getElementById("modeLabel");
 
   toggleSwitch.addEventListener("change", () => {
     if (toggleSwitch.checked) {
-      // Professional Mode ON
+      // ENABLE PRO MODE
       toggleCircle.style.transform = "translateX(40px)";
-      toggleText.textContent = "Pro";
-      toggleBG.style.background = 
+      toggleBG.style.background =
         "linear-gradient(to right, rgba(17,24,39,0.7), rgba(15,23,42,0.8))";
 
-      // Apply darker gradient to the whole body
       document.body.classList.add("professional-mode");
+      modeLabel.textContent = "Professional Mode On";
 
-      console.log("Professional Mode Enabled");
+      // You can add PRO FEATURES here:
+      // document.getElementById("aqi-card").style.display = "block";
+      // document.getElementById("uv-card").style.display = "block";
+      // document.getElementById("sunArc").style.display = "block";
+
+      console.log("PRO MODE ENABLED");
+
     } else {
-      // Basic Mode
+      // DISABLE PRO MODE (Return to normal)
       toggleCircle.style.transform = "translateX(0px)";
-      toggleText.textContent = "Basic";
       toggleBG.style.background =
         "linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4))";
 
-      // Remove darker gradient
       document.body.classList.remove("professional-mode");
+      modeLabel.textContent = "Professional Mode Off";
 
-      console.log("Basic Mode Enabled");
+      console.log("PRO MODE DISABLED");
+
+      // Hide pro features if needed
+      // document.getElementById("aqi-card").style.display = "none";
     }
   });
 </script>
+
 <style>
   .link-like { cursor: pointer; text-decoration: underline; color: inherit; }
   .link-like:focus { outline: 2px solid #4a90e2; outline-offset: 2px; }
 </style>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
