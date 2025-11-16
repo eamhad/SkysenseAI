@@ -1,4 +1,33 @@
-Copyright (c) 2025 SkysenseAI
+SkysenseAI Proprietary License
+Copyright (c) 2025 SkysenseAI. All rights reserved.
 
-All rights reserved.
-This project is proprietary and cannot be copied, modified, or distributed without permission.
+This software, website, design, content, code, branding, and associated files 
+(collectively referred to as “SkysenseAI”) are the exclusive property of the 
+SkysenseAI project and its creators.
+
+Permission is hereby granted to view and use this project for personal and 
+non-commercial purposes only.
+
+You are NOT permitted to:
+
+1. Copy, reproduce, or redistribute any part of SkysenseAI.
+2. Modify, adapt, translate, or create derivative works.
+3. Re-upload, repost, or host any version of the project publicly.
+4. Use the SkysenseAI name, branding, or design elements without permission.
+5. Sell, license, or commercially exploit any part of SkysenseAI.
+6. Use SkysenseAI for training AI models or dataset creation.
+
+Any unauthorized use of SkysenseAI, including copying or distributing 
+the code, design, text, images, or data, is strictly prohibited and may 
+result in legal action.
+
+For permissions or licensing inquiries, contact:
+skysenseai@gmail.com
+
+This license applies to:
+- All source code (HTML, CSS, JS, backend code)
+- UI/UX designs and layouts
+- All articles and written text
+- Logos, icons, graphics, and branding
+- Weather formatting logic and map features
+- Any proprietary assets created for SkysenseAI
