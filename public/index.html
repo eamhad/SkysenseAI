@@ -263,6 +263,17 @@
       </h1>
       <p class="mt-1 text-blue-200">Weather insights & smart chat in one place</p>
     </div>
+    <div class="mt-6 bg-white/10 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-lg border border-white/10 
+            flex gap-6 justify-center text-blue-200 text-sm md:text-base font-medium">
+  
+  <a href="index.html" class="hover:text-white transition">Home</a>
+  <a href="articles.html" class="hover:text-white transition">Articles</a>
+  <a href="about.html" target="_blank" class="hover:text-white transition">About</a>
+  <a href="privacy.html" target="_blank" class="hover:text-white transition">Privacy</a>
+  <a href="terms.html" target="_blank" class="hover:text-white transition">Terms</a>
+  <a href="contact.html" target="_blank" class="hover:text-white transition">Contact</a>
+
+</div>
   </div>
 
   <!-- Main Content -->
@@ -413,15 +424,6 @@
   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1Ir5BmoNXiP6V7jLIDZr8";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
-  <!-- index.html (with JS) -->
-<nav aria-label="site links">
-  <a href="about.html" target="_blank" rel="noopener noreferrer">About</a> ·
-  <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> ·
-  <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a> ·
-  <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us</a> .
-  <a href="articles.html">Articles</a>
-</nav>
-
 <script>
   document.querySelectorAll('.link-like').forEach(el => {
     el.addEventListener('click', () => {
@@ -444,6 +446,7 @@
 </style>
 </body>
 </html>
+
 
 
 
