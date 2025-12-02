@@ -249,15 +249,18 @@
   background: linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4));
 }
 
-/* Pro Mode Background (Dark Theme) */
-.professional-mode {
-  background: linear-gradient(to bottom right, #0a1124, #0d1b3d, #0d284d) !important;
-}
+
 
   </style>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8331569271788762"
      crossorigin="anonymous"></script>
 </head>
@@ -288,9 +291,7 @@
     <a href="feedback.html" target="_blank" class="hover:text-white transition">Feedback</a>
 
   </div>
-
 </div>
-
   </div>
 
   <!-- Main Content -->
@@ -452,8 +453,6 @@
 </div>
 
 </div>
-
-
 </div>
 
   <footer class="mt-4 text-sm text-blue-300 opacity-70 text-center">
@@ -466,6 +465,27 @@
   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1Ir5BmoNXiP6V7jLIDZr8";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+<script>
+  const toggleSwitch = document.getElementById("toggleSwitch");
+  const toggleBG = document.getElementById("toggleBG");
+  const toggleCircle = document.getElementById("toggleCircle");
+  const modeLabel = document.getElementById("modeLabel");
+
+  toggleSwitch.addEventListener("change", () => {
+    if (toggleSwitch.checked) {
+      // Go to the PRO PAGE
+      window.location.href = "ProIndex.html";
+    } else {
+      // Normal mode ON index.html → do nothing extra
+      toggleCircle.style.transform = "translateX(0px)";
+      toggleBG.style.background =
+        "linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4))";
+      modeLabel.textContent = "Professional Mode Off";
+    }
+  });
+
+</script>
+
 <script>
   document.querySelectorAll('.link-like').forEach(el => {
     el.addEventListener('click', () => {
@@ -481,49 +501,11 @@
     });
   });
 </script>
-<script>
-  const toggleSwitch = document.getElementById("toggleSwitch");
-  const toggleBG = document.getElementById("toggleBG");
-  const toggleCircle = document.getElementById("toggleCircle");
-  const modeLabel = document.getElementById("modeLabel");
-
-  toggleSwitch.addEventListener("change", () => {
-    if (toggleSwitch.checked) {
-      // ENABLE PRO MODE
-      toggleCircle.style.transform = "translateX(40px)";
-      toggleBG.style.background =
-        "linear-gradient(to right, rgba(17,24,39,0.7), rgba(15,23,42,0.8))";
-
-      document.body.classList.add("professional-mode");
-      modeLabel.textContent = "Professional Mode On";
-
-      // You can add PRO FEATURES here:
-      // document.getElementById("aqi-card").style.display = "block";
-      // document.getElementById("uv-card").style.display = "block";
-      // document.getElementById("sunArc").style.display = "block";
-
-      console.log("PRO MODE ENABLED");
-
-    } else {
-      // DISABLE PRO MODE (Return to normal)
-      toggleCircle.style.transform = "translateX(0px)";
-      toggleBG.style.background =
-        "linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4))";
-
-      document.body.classList.remove("professional-mode");
-      modeLabel.textContent = "Professional Mode Off";
-
-      console.log("PRO MODE DISABLED");
-
-      // Hide pro features if needed
-      // document.getElementById("aqi-card").style.display = "none";
-    }
-  });
-</script>
-
 <style>
   .link-like { cursor: pointer; text-decoration: underline; color: inherit; }
   .link-like:focus { outline: 2px solid #4a90e2; outline-offset: 2px; }
 </style>
 </body>
 </html>
+
+
