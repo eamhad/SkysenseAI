@@ -307,29 +307,7 @@
 
       <!-- RIGHT: Weather Map -->
       <div class="map-container">
-      <!-- Pro Mode Toggle -->
-<div class="absolute top-4 right-20 z-[9999] flex flex-col items-center">
-  
-  <!-- Slider -->
-  <div class="relative inline-block w-20 select-none" id="modeToggle">
-    <input type="checkbox" id="toggleSwitch" class="hidden" />
-
-    <label for="toggleSwitch"
-           class="block h-10 rounded-full cursor-pointer backdrop-blur-xl bg-white/20 border border-white/30 transition-all"
-           id="toggleBG">
-    </label>
-
-    <div id="toggleCircle"
-         class="absolute left-1 top-1 bg-white w-8 h-8 rounded-full shadow-md transform transition-all">
-    </div>
-  </div>
-
-  <!-- Text Under Slider -->
-  <p class="text-white text-sm font-semibold mt-2 opacity-80" id="modeLabel">
-    Professional Mode Off
-  </p>
-
-</div>
+    
 
 
         <div id="weather-map-container" class="relative w-full rounded-2xl overflow-hidden shadow-xl">
@@ -465,26 +443,7 @@
   <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="1Ir5BmoNXiP6V7jLIDZr8";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
-<script>
-  const toggleSwitch = document.getElementById("toggleSwitch");
-  const toggleBG = document.getElementById("toggleBG");
-  const toggleCircle = document.getElementById("toggleCircle");
-  const modeLabel = document.getElementById("modeLabel");
 
-  toggleSwitch.addEventListener("change", () => {
-    if (toggleSwitch.checked) {
-      // Go to the PRO PAGE
-      window.location.href = "ProIndex.html";
-    } else {
-      // Normal mode ON index.html → do nothing extra
-      toggleCircle.style.transform = "translateX(0px)";
-      toggleBG.style.background =
-        "linear-gradient(to right, rgba(59,130,246,0.4), rgba(37,99,235,0.4))";
-      modeLabel.textContent = "Professional Mode Off";
-    }
-  });
-
-</script>
 
 <script>
   document.querySelectorAll('.link-like').forEach(el => {
@@ -507,5 +466,6 @@
 </style>
 </body>
 </html>
+
 
 
